@@ -38,7 +38,7 @@ def part_2_solution_01(input):
     return index
 
 if __name__ == '__main__':
-    input_part1 = open('inputs/01.txt', 'r').read()
+    input = open('inputs/01.txt', 'r').read()
 
-    print(part_1_solution_01(input_part1))
-    print(part_2_solution_01(input_part1))
+    print(part_1_solution_01(input))
+    print(part_2_solution_01(input))
