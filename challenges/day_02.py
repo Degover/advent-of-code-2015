@@ -19,19 +19,24 @@ class Part1_Solution01:
     def _parse_raw_input(self, raw_input):
         current_number = ''
         current_array = []
+
+        def append_number():
+            nonlocal current_array
+            nonlocal current_number
+            current_array.append(int(current_number))
+            current_number = ''
+
         for char in raw_input:
             if(char == 'x'):
-                current_array.append(int(current_number))
-                current_number = ''
+                append_number()
             elif(char == '\n'):
-                current_array.append(int(current_number))
+                append_number()
                 yield current_array
-                current_number = ''
                 current_array = []
             else:
                 current_number += char
 
-        current_array.append(int(current_number))
+        append_number()
         yield current_array
 
     def _calculate_faces_areas(self, dimensions_array):
