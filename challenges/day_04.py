@@ -1,6 +1,5 @@
 import hashlib
 
-# -- Common -- #
 class HashCrawler:
 
     def __init__(self, key):
@@ -17,14 +16,12 @@ class HashCrawler:
         while(True):
             yield self.get_next()
 
-# -- Part 1 -- #
 def part1_solution(input):
     crawler = HashCrawler(input)
     for [index, hash] in crawler.generate_hashes():
         if(hash.startswith('00000')):
             return index
 
-# -- Part 2 -- #
 def part2_solution(input):
     crawler = HashCrawler(input)
     for [index, hash] in crawler.generate_hashes():

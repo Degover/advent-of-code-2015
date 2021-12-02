@@ -1,7 +1,7 @@
 import unittest
 from challenges.day_04 import *
 
-class Day04_Part01_Tests(unittest.TestCase):
+class Day04_Tests(unittest.TestCase):
 
     def test_RunSolution_ShouldResolve(self):
         test_cases = [
