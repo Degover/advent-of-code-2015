@@ -1,5 +1,4 @@
-# -- Common -- #
-class Day_03_Walker:
+class HouseWalker:
     def __init__(self):
         self._current_x = 0
         self._current_y = 0
@@ -27,17 +26,17 @@ class Day_03_Walker:
     def get_current_coord(self):
         return (self._current_x, self._current_y)
 
-def day_03_part_1_solution(input):
-    walker = Day_03_Walker()
+def part1_solution(input):
+    walker = HouseWalker()
     for char in input:
         walker.walk(char)
         walker.gift_current_house()
     
     return len(walker._houses_gifted)
 
-def day_03_part_2_solution(input):
-    santa_walker = Day_03_Walker()
-    robo_santa_walker = Day_03_Walker()
+def part2_solution(input):
+    santa_walker = HouseWalker()
+    robo_santa_walker = HouseWalker()
 
     santa_walker._houses_gifted = robo_santa_walker._houses_gifted
 
@@ -56,5 +55,5 @@ def day_03_part_2_solution(input):
 if __name__ == '__main__':
     raw_input = open('inputs/03.txt', 'r').read()
 
-    print(day_03_part_1_solution(raw_input))
-    print(day_03_part_2_solution(raw_input))
+    print(part1_solution(raw_input))
+    print(part2_solution(raw_input))

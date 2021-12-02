@@ -1,5 +1,4 @@
-# -- Part 01 solutions -- #
-def part_1_solution_01(input):
+def part1_solution(input):
     switch = {
         "(": +1,
         ")": -1
@@ -10,18 +9,7 @@ def part_1_solution_01(input):
     
     return final_floor
 
-def part_1_solution_02(input):
-    final_floor = 0
-    for char in input:
-        if(char == "("):
-            final_floor += 1
-        else:
-            final_floor -= 1
-    
-    return final_floor
-
-# -- Part 02 solutions -- #
-def part_2_solution_01(input):
+def part2_solution(input):
     switch = {
         "(": +1,
         ")": -1
@@ -40,5 +28,5 @@ def part_2_solution_01(input):
 if __name__ == '__main__':
     input = open('inputs/01.txt', 'r').read()
 
-    print(part_1_solution_01(input))
-    print(part_2_solution_01(input))
+    print(part1_solution(input))
+    print(part2_solution(input))
