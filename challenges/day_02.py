@@ -1,32 +1,37 @@
-# -- Common -- #
-def parse_raw_input(raw_input):
-    current_number = ''
-    current_array = []
+class InputParser:
 
-    def append_number():
-        nonlocal current_array
-        nonlocal current_number
-        current_array.append(int(current_number))
-        current_number = ''
+    def __init__(self, raw_input):
+        self.raw_input = raw_input
+        self.current_number = ''
+        self.current_array = []
 
-    for char in raw_input:
-        if(char == 'x'):
-            append_number()
-        elif(char == '\n'):
-            append_number()
-            yield current_array
-            current_array = []
-        else:
-            current_number += char
+    def append_number(self):    
+        self.current_array.append(int(self.current_number))
+        self.current_number = ''
 
-    append_number()
-    yield current_array
+    def parse(self):
+        for char in self.raw_input:
+            if(char == 'x'):
+                self.append_number()
 
-# -- Part 01 solutions -- #
-class Part1_Solution01:
+            elif(char == '\n'):
+                self.append_number()
+                yield self.current_array
+                self.current_array = []
+
+            else:
+                self.current_number += char
+
+        self.append_number()
+        yield self.current_array
+
+class Part1_Solution:
+
     def run(self, raw_input):
         total_sum = 0
-        for dimension_arr in parse_raw_input(raw_input):
+        parser = InputParser(raw_input)
+
+        for dimension_arr in parser.parse():
             faces_arr = self._calculate_faces_areas(dimension_arr)
             smallest_face = faces_arr[0]
 
@@ -47,11 +52,13 @@ class Part1_Solution01:
             dimensions_array[1] * dimensions_array[2]
         ]
 
-# -- Part 02 solutions -- #
-class Part2_Solution01:
+class Part2_Solution:
+    
     def run(self, raw_input):
         total_sum = 0
-        for dimension_arr in parse_raw_input(raw_input):
+        parser = InputParser(raw_input)
+
+        for dimension_arr in parser.parse():
             total_sum += self._calculate_cubic_volume(dimension_arr)
             total_sum += self._calculate_shortest_perimeter(dimension_arr)
 
@@ -65,10 +72,8 @@ class Part2_Solution01:
     def _calculate_cubic_volume(self, dimensions_array):
         return dimensions_array[0] *  dimensions_array[1] *  dimensions_array[2]
         
-
-
 if __name__ == '__main__':
     raw_input = open('inputs/02.txt', 'r').read()
 
-    print(Part1_Solution01().run(raw_input))
-    print(Part2_Solution01().run(raw_input))
+    print(Part1_Solution().run(raw_input))
+    print(Part2_Solution().run(raw_input))

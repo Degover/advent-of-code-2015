@@ -26,46 +26,38 @@ calculatedFaces = [
 calculatedShortestPerimeters = [28, 36, 20, 58, 28, 74]
 calculatedCubicVolume = [792, 1235, 243, 4032, 816, 7524]
 
-class Day02_Part01_Tests(unittest.TestCase):
+class Day02_Tests(unittest.TestCase):
 
     def test_parseRawInput_ShouldParse(self):
         index = 0
-        for parsedArr in parse_raw_input(rawInput):
+        parser = InputParser(rawInput)
+        for parsedArr in parser.parse():
             self.assertListEqual(parsedArr, parsedInput[index])
             index += 1
 
     def test_calculateFacesAreas_ShouldBeCorrect(self):
-        obj = Part1_Solution01()
+        obj = Part1_Solution()
         for index in range(0, len(parsedInput)):
             result = obj._calculate_faces_areas(parsedInput[index])
             self.assertListEqual(result, calculatedFaces[index])
 
-    def test_runSolution_ShouldBeCorrect(self):
-        obj = Part1_Solution01()
-        self.assertEqual(obj.run(rawInput), 7387)
-
-
-class Day02_Part02_Tests(unittest.TestCase):
-
-    def test_parseRawInput_ShouldParse(self):
-        index = 0
-        for parsedArr in parse_raw_input(rawInput):
-            self.assertListEqual(parsedArr, parsedInput[index])
-            index += 1
-
     def test_calculateShortestPerimeter_ShouldBeCorrect(self):
-        obj = Part2_Solution01()
+        obj = Part2_Solution()
         for index in range(0, len(parsedInput)):
             copied_list = parsedInput[index].copy()
             result = obj._calculate_shortest_perimeter(copied_list)
             self.assertEqual(result, calculatedShortestPerimeters[index])
 
     def test_calculateCubicVolume_ShouldBeCorrect(self):
-        obj = Part2_Solution01()
+        obj = Part2_Solution()
         for index in range(0, len(parsedInput)):
             result = obj._calculate_cubic_volume(parsedInput[index])
             self.assertEqual(result, calculatedCubicVolume[index])
 
-    def test_runSolution_ShouldBeCorrect(self):
-        obj = Part2_Solution01()
+    def test_runSolution_WithPart1_ShouldBeCorrect(self):
+        obj = Part1_Solution()
+        self.assertEqual(obj.run(rawInput), 7387)
+
+    def test_runSolution_WithPart2_ShouldBeCorrect(self):
+        obj = Part2_Solution()
         self.assertEqual(obj.run(rawInput), 14886)
