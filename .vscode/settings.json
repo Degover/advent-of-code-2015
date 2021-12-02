@@ -13,5 +13,6 @@
     ],
     "python.testing.pytestArgs": [
         "test"
-    ]
+    ],
+    "workbench.colorTheme": "Default Dark+"
 }
